@@ -1,0 +1,17 @@
+<hlm-tabs
+  tab="see"
+  class="flex flex-col w-full justify-center items-center mt-10"
+>
+  <hlm-tabs-list class="w-full grid grid-cols-2 max-w-2xl" aria-label="tabs">
+    <button hlmTabsTrigger="create">Criar nova máquina</button>
+    <button hlmTabsTrigger="see">Ver máquinas registradas</button>
+  </hlm-tabs-list>
+
+  <div hlmTabsContent="create">
+    <app-create-machine></app-create-machine>
+  </div>
+
+  <div hlmTabsContent="see" class="w-max">
+    <app-see-machines></app-see-machines>
+  </div>
+</hlm-tabs>

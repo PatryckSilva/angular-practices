@@ -1,4 +1,14 @@
 import { Routes } from '@angular/router';
-import { CreateMachineComponent } from './components/layout/create-machine/create-machine.component';
+import { MachineDetailsComponent } from './components/layout/machine-details/machine-details.component';
+import { HomeComponent } from './pages/home/home.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'maquinas/:id',
+    component: MachineDetailsComponent,
+  },
+];

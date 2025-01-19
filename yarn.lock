@@ -1923,10 +1923,10 @@
     "@emnapi/runtime" "^1.1.0"
     "@tybys/wasm-util" "^0.9.0"
 
-"@ng-icons/core@>=29.0.0":
-  version "30.2.0"
-  resolved "https://registry.yarnpkg.com/@ng-icons/core/-/core-30.2.0.tgz#23cfa214fa1f665dbd96b8819b0aa98a1c3a3a50"
-  integrity sha512-iByDwPw/CJ/k6y2mskW50BeOkgcfAlGwZKipAvUdy6mU0Yg3qmba0oJ5BOsi3xZbnRiMUOmehBxYwjw4aDKnkA==
+"@ng-icons/core@^29.10.0":
+  version "29.10.0"
+  resolved "https://registry.yarnpkg.com/@ng-icons/core/-/core-29.10.0.tgz#04f98a8ac2bba77d263cc1864e5a6ae0f00c5935"
+  integrity sha512-PR6SO00yvFhwDhh37BWhtAgRfzxuXpJQBsAQ44Pg3gjc83fOAwOtMSXizYwtN0uUFIkAYZHZCEuV7Sb8eosK+w==
   dependencies:
     tslib "^2.3.0"
 
@@ -3355,7 +3355,7 @@ autoprefixer@10.4.20, autoprefixer@^10.4.20, autoprefixer@^10.4.9:
     picocolors "^1.0.1"
     postcss-value-parser "^4.2.0"
 
-axios@^1.7.4:
+axios@^1.7.4, axios@^1.7.9:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.9.tgz#d7d071380c132a24accda1b2cfc1535b79ec650a"
   integrity sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==

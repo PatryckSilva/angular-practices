@@ -33,6 +33,15 @@
       ],
       "@spartan-ng/ui-card-helm": [
         "./src/app/components/ui/ui-card-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-table-helm": [
+        "./src/app/components/ui/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-select-helm": [
+        "./src/app/components/ui/ui-select-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-icon-helm": [
+        "./src/app/components/ui/ui-icon-helm/src/index.ts"
       ]
     }
   },

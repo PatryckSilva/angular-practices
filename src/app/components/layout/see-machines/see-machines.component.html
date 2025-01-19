@@ -1,7 +1,25 @@
 <main
-  class="min-w-screen min-h-screen h-screen flex flex-col items-center justify-start py-20 gap-5 bg-background"
+  class="w-screen min-h-screen flex flex-col items-center justify-center py-20 gap-10 bg-background"
 >
   <article>
     <h1 class="text-4xl font-semibold">Máquinas registradas</h1>
   </article>
+
+  <section class="flex w-full justify-center flex-wrap gap-10">
+    @for(item of listMachines; track item){
+    <section
+      hlmCard
+      class="w-[450px] cursor-pointer hover:bg-primary-foreground transition-all"
+    >
+      <div hlmCardHeader class="flex flex-row justify-between">
+        <div class="flex flex-col gap-2">
+          <h3 hlmCardTitle class="text-2xl truncate">{{ item.name }}</h3>
+          <p hlmCardDescription class="text-lg truncate">{{ item.location }}</p>
+        </div>
+        <span class="font-medium">Status: {{ item.status }}</span>
+        <a hlmBtn routerLink="/maquinas/{{ item.id }}">Ver Detalhes</a>
+      </div>
+    </section>
+    }
+  </section>
 </main>
