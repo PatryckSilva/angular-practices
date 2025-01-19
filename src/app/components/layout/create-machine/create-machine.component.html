@@ -9,14 +9,14 @@
     <form
       (submit)="submit()"
       hlmCardContent
-      class="space-y-5"
+      class="flex flex-col gap-5"
       [formGroup]="form"
       #formDir="ngForm"
     >
       <label for="name" class="flex flex-col gap-1.5">
         <span class="font-medium">Nome da Máquina:</span>
         <input
-          class="w-80"
+          class="w-80 bg-input/70"
           hlmInput
           placeholder=""
           type="text"
@@ -32,7 +32,7 @@
       <label for="local" class="flex flex-col gap-1.5">
         <span class="font-medium">Localização:</span>
         <input
-          class="w-80"
+          class="w-80 bg-input/70"
           hlmInput
           placeholder=""
           type="text"
@@ -47,7 +47,7 @@
 
         <select
           (change)="onSelectChange($event)"
-          class="border border-border py-2 px-4 rounded-sm"
+          class="border border-border py-2 px-4 rounded-sm max-w-80 bg-input/70"
         >
           @for(item of selectOptions; track item){
           <option [value]="item">{{ item }}</option>
@@ -55,11 +55,21 @@
         </select>
       </label>
 
-      <button type="submit" hlmBtn class="w-full">
+      <button type="submit" hlmBtn class="w-full max-w-80">
         @if(isLoadingRequest){ <span>Criando máquina...</span> } @else{
         <span> Criar máquina</span>
         }
       </button>
+
+      @if(requestSuccess.isSuccess){
+      <span class="text-green-500 max-w-80 text-center">
+        {{ requestSuccess.message }}
+      </span>
+      } @else {
+      <span class="text-red-500 max-w-80 text-center">
+        {{ requestSuccess.message }}
+      </span>
+      }
     </form>
   </section>
 </main>

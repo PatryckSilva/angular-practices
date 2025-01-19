@@ -11,6 +11,7 @@ import {
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { StatusType, TRegisterMachine } from '../../../../@types';
 import { MachinesService } from '../../../services/machines.service';
+import { AxiosError } from 'axios';
 
 @Component({
   selector: 'app-create-machine',
@@ -35,6 +36,11 @@ export class CreateMachineComponent {
   selectedStatus = 'OFF';
   selectOptions = Object.values(StatusType);
 
+  requestSuccess = {
+    isSuccess: false,
+    message: '',
+  };
+
   isLoadingRequest = false;
 
   form!: FormGroup;
@@ -54,10 +60,16 @@ export class CreateMachineComponent {
     this.selectedStatus = value.target.value;
   }
 
+  showSuccess(message: string, success: boolean) {
+    this.requestSuccess = {
+      message,
+      isSuccess: success,
+    };
+  }
+
   async submit() {
     try {
       this.isLoadingRequest = true;
-      console.log(`this.isLoadingRequest`, this.isLoadingRequest);
       let objToSend: TRegisterMachine;
       const { name, location } = this.form.getRawValue();
       const validationName = name === '' || name.length < 3;
@@ -89,15 +101,20 @@ export class CreateMachineComponent {
       };
 
       const response = await this.machinesService.createMachine(objToSend);
+      const validatingStatusCode =
+        response.statusCode >= 200 && response.statusCode < 300;
 
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        this.form.reset();
+      if (!validatingStatusCode) {
+        this.showSuccess('❌ Erro ao criar máquina', false);
       }
+
+      this.form.reset();
+      return this.showSuccess('✅ Máquina criada com sucesso', true);
     } catch (error) {
-      console.log('erro ao criar maquina', error);
+      const _error = error as AxiosError;
+      this.showSuccess(`❌ ${_error.message}`, false);
     } finally {
       this.isLoadingRequest = false;
-      console.log(`this.isLoadingRequest`, this.isLoadingRequest);
     }
   }
 }
