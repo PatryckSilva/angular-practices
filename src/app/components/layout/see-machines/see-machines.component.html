@@ -12,12 +12,17 @@
       class="w-[450px] cursor-pointer hover:bg-primary-foreground transition-all"
     >
       <div hlmCardHeader class="flex flex-row justify-between">
-        <div class="flex flex-col gap-2">
+        <aside class="flex flex-col gap-2">
           <h3 hlmCardTitle class="text-2xl truncate">{{ item.name }}</h3>
           <p hlmCardDescription class="text-lg truncate">{{ item.location }}</p>
-        </div>
-        <span class="font-medium">Status: {{ item.status }}</span>
-        <a hlmBtn routerLink="/maquinas/{{ item.id }}">Ver Detalhes</a>
+        </aside>
+
+        <aside class="flex flex-col gap-5">
+          <span class="font-medium">Status: {{ item.status }}</span>
+          <button hlmBtn routerLink="/maquinas/{{ item.id }}">
+            Ver Detalhes
+          </button>
+        </aside>
       </div>
     </section>
     }
