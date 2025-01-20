@@ -16,7 +16,6 @@ import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
 import {
   HlmAccordionContentComponent,
   HlmAccordionDirective,
-  HlmAccordionIconDirective,
   HlmAccordionItemDirective,
   HlmAccordionTriggerDirective,
 } from '@spartan-ng/ui-accordion-helm';
@@ -36,7 +35,6 @@ import {
     HlmAccordionItemDirective,
     HlmAccordionTriggerDirective,
     HlmAccordionContentComponent,
-    HlmAccordionIconDirective,
     HlmIconDirective,
 
     GoogleMapsModule,
