@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { httpClient } from '../../infra/http-client';
-import { TMachine, TRegisterMachine } from '../../@types';
+import {
+  TStatusKeyType,
+  StatusType,
+  TMachine,
+  TRegisterMachine,
+} from '../../@types';
 import { HttpResponse } from '../../@types/httpTypes';
 
 @Injectable({
@@ -20,5 +25,16 @@ export class MachinesService {
     const response = httpClient.request({ method: 'post', url, body });
 
     return response;
+  }
+
+  async findMachineById(id: string): Promise<HttpResponse<TMachine>> {
+    const url = `http://localhost:5000/machines/find-by-id/${id}`;
+    const response = httpClient.request({ method: 'get', url });
+
+    return response;
+  }
+
+  getStatusIcon(status: TStatusKeyType): string {
+    return StatusType[status];
   }
 }

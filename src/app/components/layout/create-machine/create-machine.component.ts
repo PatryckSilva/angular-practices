@@ -32,23 +32,6 @@ import { AxiosError } from 'axios';
   styleUrl: './create-machine.component.css',
 })
 export class CreateMachineComponent {
-  machinesService = inject(MachinesService);
-  selectedStatus = 'OFF';
-  selectOptions = Object.values(StatusType);
-
-  requestSuccess = {
-    isSuccess: false,
-    message: '',
-  };
-
-  isLoadingRequest = false;
-
-  form!: FormGroup;
-  formFieldsError: any = {
-    name: { value: '', error: '' },
-    location: { value: '', error: '' },
-  };
-
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       name: '',
@@ -56,12 +39,28 @@ export class CreateMachineComponent {
     });
   }
 
+  machinesService = inject(MachinesService);
+  selectedStatus = 'OFF';
+  selectOptions = Object.keys(StatusType);
+  isLoading = false;
+
+  responseMesssage = {
+    isSuccess: false,
+    message: '',
+  };
+
+  form!: FormGroup;
+  formFieldsError: any = {
+    name: { value: '', error: '' },
+    location: { value: '', error: '' },
+  };
+
   onSelectChange(value: any) {
     this.selectedStatus = value.target.value;
   }
 
-  showSuccess(message: string, success: boolean) {
-    this.requestSuccess = {
+  showMessage(message: string, success: boolean) {
+    this.responseMesssage = {
       message,
       isSuccess: success,
     };
@@ -69,7 +68,7 @@ export class CreateMachineComponent {
 
   async submit() {
     try {
-      this.isLoadingRequest = true;
+      this.isLoading = true;
       let objToSend: TRegisterMachine;
       const { name, location } = this.form.getRawValue();
       const validationName = name === '' || name.length < 3;
@@ -105,16 +104,16 @@ export class CreateMachineComponent {
         response.statusCode >= 200 && response.statusCode < 300;
 
       if (!validatingStatusCode) {
-        this.showSuccess('❌ Erro ao criar máquina', false);
+        this.showMessage('❌ Erro ao criar máquina', false);
       }
 
       this.form.reset();
-      return this.showSuccess('✅ Máquina criada com sucesso', true);
+      return this.showMessage('✅ Máquina criada com sucesso', true);
     } catch (error) {
       const _error = error as AxiosError;
-      this.showSuccess(`❌ ${_error.message}`, false);
+      this.showMessage(`❌ ${_error.message}`, false);
     } finally {
-      this.isLoadingRequest = false;
+      this.isLoading = false;
     }
   }
 }

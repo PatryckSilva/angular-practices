@@ -56,18 +56,18 @@
       </label>
 
       <button type="submit" hlmBtn class="w-full max-w-80">
-        @if(isLoadingRequest){ <span>Criando máquina...</span> } @else{
+        @if(isLoading){ <span>Criando máquina...</span> } @else{
         <span> Criar máquina</span>
         }
       </button>
 
-      @if(requestSuccess.isSuccess){
+      @if(responseMesssage.isSuccess){
       <span class="text-green-500 max-w-80 text-center">
-        {{ requestSuccess.message }}
+        {{ responseMesssage.message }}
       </span>
       } @else {
       <span class="text-red-500 max-w-80 text-center">
-        {{ requestSuccess.message }}
+        {{ responseMesssage.message }}
       </span>
       }
     </form>

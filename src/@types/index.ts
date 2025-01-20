@@ -1,14 +1,16 @@
 export enum StatusType {
-  off = 'OFF',
-  operating = 'OPERATING',
-  maintenance = 'MAINTENANCE',
+  OFF = '❌',
+  OPERATING = '✅',
+  MAINTENANCE = '⚠️',
 }
+
+export type TStatusKeyType = keyof typeof StatusType;
 
 export type TMachine = {
   id: string;
   name: string;
   location: string;
-  status: StatusType;
+  status: TStatusKeyType;
   createdAt: string;
   updatedAt: string;
 };

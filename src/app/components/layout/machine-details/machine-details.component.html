@@ -1,3 +1,41 @@
-<h1>Detalhes da Máquina</h1>
-<p>ID da Máquina: {{ machineId }}</p>
-<button routerLink="">voltar</button>
+<main
+  class="w-screen min-h-screen flex flex-col items-center justify-start py-20 gap-10 bg-background"
+>
+  <article>
+    <h1 class="text-4xl font-bold text-center">Detalhes da Máquina</h1>
+  </article>
+
+  <section hlmCard class="w-3/4 hover:border-primary transition-all">
+    <div
+      hlmCardHeader
+      class="flex border-b border-primary flex-col w-full gap-8"
+    >
+      <article class="flex flex-col md:flex-row w-full justify-between">
+        <h3 hlmCardTitle class="text-lg md:text-2xl">
+          Nome da Máquina:
+          {{ machineById?.name }}
+        </h3>
+
+        <span hlmCardDescription class="font-medium">
+          Status: {{ statusIcon(machineById?.status || "OFF") }}
+          {{ machineById?.status }}
+        </span>
+      </article>
+    </div>
+
+    <div hlmCardContent class="pt-5">
+      <aside class="flex flex-col w-full gap-5">
+        <p class="text-lg md:text-xl text-muted-foreground">
+          🪪 <b>ID:</b> <br class="md:hidden" />
+          {{ machineById?.id }}
+        </p>
+
+        <p class="text-lg md:text-xl text-muted-foreground">
+          📍 <b>Localização:</b> <br class="md:hidden" />
+          {{ machineById?.location }}
+        </p>
+      </aside>
+    </div>
+  </section>
+  <button routerLink="">voltar</button>
+</main>

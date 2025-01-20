@@ -1,30 +1,71 @@
 <main
-  class="w-screen min-h-screen flex flex-col items-center justify-center py-20 gap-10 bg-background"
+  class="w-screen min-h-screen flex flex-col items-center justify-start py-20 gap-10 bg-background"
 >
   <article>
-    <h1 class="text-4xl font-semibold">Máquinas registradas</h1>
+    <h1 class="text-4xl font-semibold text-center">Máquinas registradas</h1>
   </article>
 
-  <section class="flex w-full justify-center flex-wrap gap-10">
-    @for(item of listMachines; track item){
-    <section
-      hlmCard
-      class="w-[450px] cursor-pointer hover:bg-primary-foreground transition-all"
-    >
-      <div hlmCardHeader class="flex flex-row justify-between">
-        <aside class="flex flex-col gap-2">
-          <h3 hlmCardTitle class="text-2xl truncate">{{ item.name }}</h3>
-          <p hlmCardDescription class="text-lg truncate">{{ item.location }}</p>
-        </aside>
+  <section class="w-full flex flex-col items-center gap-4">
+    <nav class="flex items-center gap-5">
+      @for (option of filterOptions; track $index) {
+      <button
+        hlmBadge
+        class="p-2"
+        [variant]="getSelectedBadgeVariant(option)"
+        (click)="handleSelectFilterStatus(option)"
+      >
+        {{ option }}
+      </button>
+      }
+    </nav>
 
-        <aside class="flex flex-col gap-5">
-          <span class="font-medium">Status: {{ item.status }}</span>
-          <button hlmBtn routerLink="/maquinas/{{ item.id }}">
-            Ver Detalhes
-          </button>
-        </aside>
-      </div>
+    @if (isLoadingMachines) {
+
+    <span> Loading... </span>
+
+    }@else if (filteredMachines.length < 1) {
+
+    <span>Não há máquinas com o Status selecionado.</span>
+
+    }@else if (listMachines.length<1) {
+    <span>Não Há maquinas registradas.</span>
+    }@else {
+    <section class="flex w-11/12 justify-center flex-wrap gap-10">
+      @for(machine of filteredMachines; track machine){
+      <section
+        hlmCard
+        routerLink="/maquinas/{{ machine.id }}"
+        class="w-[350px] md:w-[450px] hover:border-primary cursor-pointer transition-all"
+      >
+        <div hlmCardHeader class="flex flex-row justify-between">
+          <aside class="flex flex-col gap-2">
+            <h3 hlmCardTitle class="text-2xl truncate">{{ machine.name }}</h3>
+
+            <p hlmCardDescription class="text-base w-36 md:w-40 truncate">
+              {{ machine.location }}
+            </p>
+          </aside>
+
+          <aside class="flex flex-col w-44 md:w-52 items-end gap-5">
+            <span class="font-medium">
+              Status: <br class="md:hidden" />{{ machine.status }}
+              {{ statusIcon(machine.status) }}
+            </span>
+
+            <button
+              hlmBtn
+              variant="link"
+              routerLink="/maquinas/{{ machine.id }}"
+              class="w-fit"
+            >
+              Ver Detalhes
+            </button>
+          </aside>
+        </div>
+      </section>
+      }
     </section>
+
     }
   </section>
 </main>
