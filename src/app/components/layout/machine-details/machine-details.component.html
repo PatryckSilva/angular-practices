@@ -35,6 +35,31 @@
           {{ machineById?.location }}
         </p>
       </aside>
+      <section class="w-full">
+        <div class="w-11/12" hlmAccordion>
+          <div hlmAccordionItem>
+            <button
+              class="text-muted-foreground font-semibold text-base"
+              hlmAccordionTrigger
+            >
+              See Map
+              <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
+            </button>
+
+            <hlm-accordion-content>
+              <figure class="w-full flex justify-center mb-10">
+                @if(center){
+                <google-map [center]="center"> </google-map>
+                }@else{
+                <span class="text-muted-foreground text-lg font-semibold"
+                  >Mapa não encontrado</span
+                >
+                }
+              </figure>
+            </hlm-accordion-content>
+          </div>
+        </div>
+      </section>
     </div>
   </section>
   <button routerLink="">voltar</button>

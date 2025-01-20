@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SocketServiceService } from '../../../services/socket-service.service';
 import { TStatusKeyType, TMachine } from '../../../../@types';
 import { MachinesService } from '../../../services/machines.service';
+import { GoogleMapsModule } from '@angular/google-maps';
 import {
   HlmCardContentDirective,
   HlmCardDescriptionDirective,
@@ -10,6 +11,15 @@ import {
   HlmCardHeaderDirective,
   HlmCardTitleDirective,
 } from '@spartan-ng/ui-card-helm';
+import { GeocodingService } from '../../../services/geocoding.service';
+import { HlmIconDirective } from '@spartan-ng/ui-icon-helm';
+import {
+  HlmAccordionContentComponent,
+  HlmAccordionDirective,
+  HlmAccordionIconDirective,
+  HlmAccordionItemDirective,
+  HlmAccordionTriggerDirective,
+} from '@spartan-ng/ui-accordion-helm';
 
 @Component({
   selector: 'app-machine-details',
@@ -21,6 +31,15 @@ import {
     HlmCardDirective,
     HlmCardHeaderDirective,
     HlmCardTitleDirective,
+
+    HlmAccordionDirective,
+    HlmAccordionItemDirective,
+    HlmAccordionTriggerDirective,
+    HlmAccordionContentComponent,
+    HlmAccordionIconDirective,
+    HlmIconDirective,
+
+    GoogleMapsModule,
   ],
   templateUrl: './machine-details.component.html',
   styleUrl: './machine-details.component.css',
@@ -28,12 +47,28 @@ import {
 export class MachineDetailsComponent {
   socketService = inject(SocketServiceService);
   machinesService = inject(MachinesService);
+  geocodingService = inject(GeocodingService);
+
   machineId: string | null = null;
   machineById!: TMachine | undefined;
   error!: { message: string };
   isLoading = true;
 
+  center!: google.maps.LatLngLiteral | undefined;
+  zoom = 15;
+
   constructor(private route: ActivatedRoute) {}
+
+  async updateMapCenter(location: string) {
+    const response = await this.geocodingService.geocodeAddress(location);
+
+    if (response.body) {
+      const { lat, lng } = response.body.results[0].geometry.location;
+      this.center = { lat, lng };
+    } else {
+      this.center = undefined;
+    }
+  }
 
   async getMachineById() {
     try {
@@ -46,6 +81,9 @@ export class MachineDetailsComponent {
       }
 
       this.machineById = response.body;
+      if (this.machineById) {
+        this.updateMapCenter(this.machineById.location);
+      }
     } catch (e) {
       console.log(e);
       const _error = e as Error;
@@ -74,6 +112,7 @@ export class MachineDetailsComponent {
 
         if (machineUpdate.location) {
           this.machineById.location = machineUpdate.location;
+          this.updateMapCenter(machineUpdate.location);
         }
       }
     });

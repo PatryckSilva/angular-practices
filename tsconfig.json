@@ -45,6 +45,9 @@
       ],
       "@spartan-ng/ui-badge-helm": [
         "./src/app/components/ui/ui-badge-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-accordion-helm": [
+        "./src/app/components/ui/ui-accordion-helm/src/index.ts"
       ]
     }
   },
