@@ -6,6 +6,14 @@ export enum StatusType {
 
 export type TStatusKeyType = keyof typeof StatusType;
 
+export interface LogsResponse {
+  id: number;
+  machineName: string;
+  machineId: string;
+  status: string;
+  updatedAt: Date;
+}
+
 export type TMachine = {
   id: string;
   name: string;

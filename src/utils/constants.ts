@@ -5,6 +5,7 @@ export const endpoints = {
     getAll: 'machines',
     create: 'machines/create',
     getById: 'machines/find-by-id',
+    logs: 'machines/logs',
   },
 };
 

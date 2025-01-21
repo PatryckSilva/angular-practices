@@ -1,0 +1,36 @@
+<main
+  class="flex flex-col items-center mt-20 justify-start gap-20 w-screen h-screen"
+>
+  <article class="flex flex-col items-center gap-4">
+    <h1 class="text-5xl font-semibold">Logs</h1>
+    <span
+      >Veja aqui os logs salvos no banco de dados das máquinas atualizadas</span
+    >
+  </article>
+
+  <section class="flex w-11/12 justify-center flex-wrap gap-10">
+    @for (item of listLogs; track $index) {
+    <section
+      hlmCard
+      class="w-[350px] md:w-[450px] hover:border-primary cursor-pointer transition-all"
+    >
+      <div hlmCardHeader class="flex flex-row justify-between">
+        <aside class="flex flex-col gap-2">
+          <h3 hlmCardTitle class="text-2xl truncate">{{ item.machineName }}</h3>
+
+          <p hlmCardDescription class="text-base">
+            {{ item.machineId }}
+          </p>
+        </aside>
+
+        <aside class="flex flex-col w-44 md:w-52 items-end gap-5">
+          <span class="font-medium">
+            Status: <br class="md:hidden" />
+            {{ item.status }}
+          </span>
+        </aside>
+      </div>
+    </section>
+    }
+  </section>
+</main>

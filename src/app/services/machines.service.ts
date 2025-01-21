@@ -5,6 +5,7 @@ import {
   StatusType,
   TMachine,
   TRegisterMachine,
+  LogsResponse,
 } from '../../@types';
 import { HttpResponse } from '../../@types/httpTypes';
 import { baseUrl, endpoints } from '../../utils/constants';
@@ -38,5 +39,12 @@ export class MachinesService {
 
   getStatusIcon(status: TStatusKeyType): string {
     return StatusType[status];
+  }
+
+  async getLogs(): Promise<HttpResponse<LogsResponse[]>> {
+    const url = `${baseUrl}/${endpoints.machines.logs}`;
+    const response = httpClient.request({ method: 'get', url });
+
+    return response;
   }
 }
