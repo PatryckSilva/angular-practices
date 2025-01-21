@@ -65,7 +65,6 @@ export class SeeMachinesComponent {
 
   ngOnInit() {
     this.socketService.getUpdatedMachinesList().subscribe((list) => {
-      console.log(`this.selectedFilterStatus`, this.selectedFilterStatus);
       this.listMachines = (list as TMachine[]).sort((a, b) =>
         a.createdAt.localeCompare(b.createdAt)
       );
