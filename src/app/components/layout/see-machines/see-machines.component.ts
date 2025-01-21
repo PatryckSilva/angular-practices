@@ -65,17 +65,23 @@ export class SeeMachinesComponent {
 
   ngOnInit() {
     this.socketService.getUpdatedMachinesList().subscribe((list) => {
-      this.listMachines = (list as TMachine[]).sort((a, b) =>
-        a.createdAt.localeCompare(b.createdAt)
-      );
+      const socketResponseList = list as TMachine[];
+      if (socketResponseList.length > 0) {
+        this.listMachines = socketResponseList.sort((a, b) =>
+          a.createdAt.localeCompare(b.createdAt)
+        );
 
-      this.filteredMachines = this.listMachines.filter(
-        (item) =>
-          item.status === this.selectedFilterStatus ||
-          this.selectedFilterStatus === 'ALL'
-      );
+        this.filteredMachines = this.listMachines.filter(
+          (item) =>
+            item.status === this.selectedFilterStatus ||
+            this.selectedFilterStatus === 'ALL'
+        );
 
-      this.isLoadingMachines = false;
+        this.isLoadingMachines = false;
+      } else {
+        this.listMachines = [];
+        this.isLoadingMachines = false;
+      }
     });
   }
 }

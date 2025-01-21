@@ -20,16 +20,12 @@
     </nav>
 
     @if (isLoadingMachines) {
-
     <span> Loading... </span>
 
-    }@else if (filteredMachines.length < 1) {
-
+    } @else if (filteredMachines.length < 1) {
     <span>Não há máquinas com o Status selecionado.</span>
 
-    }@else if (listMachines.length<1) {
-    <span>Não Há maquinas registradas.</span>
-    }@else {
+    } @else {
     <section class="flex w-11/12 justify-center flex-wrap gap-10">
       @for(machine of filteredMachines; track machine){
       <section
