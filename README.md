@@ -1,60 +1,31 @@
-# Frontend
+### Como Rodar o Frontend:
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.2.
+1. Necessita abrir um terminal, e rodar o comando:
+   `yarn`
 
-## Development server
+2. Após rodar o comando acima, as dependências estarão instaladas, rode o comando:
+   `yarn start`
 
-To start a local development server, run:
+3. Após rodar o comando acima, o projeto estará disponível em:
+   `http://localhost:4200/`
 
-```bash
-ng serve
-```
+4. Funcionalidades:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- [✅] Página com Listagem de Máquinas, que atualizam em tempo real a localização e status da máquina atualizada no cronjob do backend;
+- [✅] Página de Detalhes da Máquina, que mostra informações detalhadas da máquina. Também é atualizado em tempo real com as informações do cronjob do backend;
+- [✅] Criação de mapa com a localização da máquina, que é atualizado em tempo real com as informações do cronjob do backend;
+- [✅] Design Responsivo e amigável, com animações fluídas;
+- [✅] Utilização de Websockets para receber a atualização em tempo real das informações;
+- [✅] Filtro por Status na listagem de máquinas;
 
-## Code scaffolding
+### Tecnologias Utilizada
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Angular;
+- Websockets;
+- Typescript;
+- TailwindCSS;
+- google-maps-angular (para gerar mapas, e encontrar as coordenadas do endereço da máquina);
 
-```bash
-ng generate component component-name
-```
+Extras:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# angular-practices
+1. Para acessar a page de logs no front, basta acessar a rota `/logs`, e será possível ver uma lista dos logs que são emitidos pelo backend.
