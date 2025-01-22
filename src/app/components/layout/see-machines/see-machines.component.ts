@@ -32,7 +32,6 @@ import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 })
 export class SeeMachinesComponent {
   filterOptions = ['ALL', ...Object.keys(StatusType)];
-  router = inject(Router);
   socketService = inject(SocketServiceService);
   machinesService = inject(MachinesService);
   isLoadingMachines = true;

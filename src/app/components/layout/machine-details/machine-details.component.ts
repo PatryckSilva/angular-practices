@@ -74,10 +74,6 @@ export class MachineDetailsComponent {
         this.machineId!
       );
 
-      if (!response.body) {
-        this.error = { message: 'Erro' };
-      }
-
       this.machineById = response.body;
       if (this.machineById) {
         this.updateMapCenter(this.machineById.location);
