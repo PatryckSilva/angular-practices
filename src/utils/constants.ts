@@ -9,4 +9,4 @@ export const endpoints = {
   },
 };
 
-export const googleApiKey = 'YOUR APÌ KEY';
+export const googleApiKey = 'AIzaSyDQGQw3Qsk4_tBL5MYCjOjKQ90tRy4GUYs';
